@@ -2,7 +2,6 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 # from ImageDown import *
 import requests
-file_path = "C:\\Users\\TJ\\Desktop\\testsite\\helloworld\\Images"
 
 def img_search(title):
 	try: 
@@ -26,7 +25,7 @@ def img_search(title):
 	#print((imgURL.find((lambda tag: tag.name == 'img'))).get('src'))
 	#print(imgURL)
 	title = title.replace(':', '')
-	file_path = "C:\\Users\\TJ\\Desktop\\testsite\\helloworld\\Images\\" + title[:-1]+".png"
+	file_path = "C:\\Users\\TJ\\Desktop\\Projectsite\\helloworld\\Images\\" + title[:-1]+".png"
 	imgURL = imgURL.split(',')[0]
 	work = "https:" + imgURL
 	r = requests.get(work, stream=True)

@@ -1,11 +1,30 @@
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
 from selenium import webdriver
 import time 
 import datetime
 from decimal import Decimal
+from init_db import create_connection, create_table, insert_game
+from extract_db import *
 
-PATH = "C:\\Users\\TJ\\Desktop\\testsite\\helloworld\\chromedriver.exe"
+PATH = "C:\\Users\\TJ\\Desktop\\testsite\\helloworld\\geckodriver.exe"
+
+sql_path = r"C:\\Users\\TJ\\Desktop\\ProjectSite\\helloworld\\Games.db"
+conn = create_connection(sql_path)
+game_table = """ CREATE TABLE IF NOT EXISTS game_info (
+                                            Name TEXT,
+                                            Seller TEXT,
+                                            game_release TEXT,
+                                            original_price REAL,
+                                            current_price REAL,
+                                            MacWin TEXT,
+                                            launcher TEXT,
+                                            savings_price REAL,
+                                            developer TEXT,
+                                            publisher TEXT,
+                                            PRIMARY KEY(Name,Seller)            
+                                        ); """
+
+if conn is not None:
+        create_table(conn, game_table) 
 
 def google_epic(title):
     try: 
@@ -18,28 +37,32 @@ def google_epic(title):
     for j in search(query, tld="co.in", num=1, stop=1, pause=2): 
         first_link = j
 
-    driver = webdriver.Chrome(PATH)
+    driver = webdriver.Firefox(executable_path=PATH)
     driver.get(first_link)
     time.sleep(2)
     name = driver.title.split(" - ", 1)[0]
-    game_developer = driver.find_element_by_xpath("//*[@data-component='MetaList']").text
+    descr = driver.find_elements_by_xpath("//*[@data-component='MetaList']")
+    count = 0
+    for i in descr:
+        if (count == 1):
+            developer = i.text
+        if (count == 3):
+            publisher = i.text
+        count = count + 1
+
     launcher = "Epic Games"
     game_release = driver.find_element_by_xpath("//*[@data-component='Time']").text
-    game_platform =driver.find_element_by_xpath("//*[@data-component='MetaPlatform']").text
+    MacWin =driver.find_element_by_xpath("//*[@data-component='MetaPlatform']").text
     d = datetime.datetime.strptime(game_release, '%b %d, %Y')
     game_release = d.strftime('%Y-%m-%d')
-    final = ""
+    current_price = ""
+    Seller = "EpicGames.com"
 
-
-    
     try:
         price = driver.find_element_by_xpath("//*[@class='css-r6gfjb-PurchasePrice__priceContainer']").text
         if price[-4:] == "Free":
-            original = price.split("Free", 1)[0]
-            final = Decimal('0')
-            # print (original)
-            # print (final)
-            # print(price)
+            original_price = price.split("Free", 1)[0]
+
         else:
             print(forced_error)
     except:
@@ -47,36 +70,50 @@ def google_epic(title):
 
     if price == 0:
         try:
-            original = driver.find_element_by_xpath("//*[@class='css-1kf4kf9-Price__discount']").text
-            final = driver.find_element_by_xpath("//*[@class='css-ovezyj']").text
-            final = Decimal(final.strip()[1:])
-            original = Decimal(original.strip()[1:])
-            savings = orignal - final
+            original_price = driver.find_element_by_xpath("//*[@class='css-1kf4kf9-Price__discount']").text
+            current_price = driver.find_element_by_xpath("//*[@class='css-ovezyj']").text
+            current_price = Decimal(current_price.strip()[1:])
+            original_price = Decimal(original_price.strip()[1:])
+            current_price = (round(float(current_price),2))
+            original_price = (round(float(original_price),2))
+            savings_price = original_price - current_price
 
         except:
             try:
-                final = driver.find_element_by_xpath("//*[@class='css-8v8on4']").text
-                final = Decimal(final.strip()[1:])
+                current_price = driver.find_element_by_xpath("//*[@class='css-8v8on4']").text
+                current_price = Decimal(current_price.strip()[1:])
+                current_price = (round(float(current_price),2))
+                original_price = current_price
+                savings_price = original_price - current_price
+
             except: 
                 try:
-                    final = driver.find_element_by_xpath("//*[@class='css-ovezyj']").text
-                    final = Decimal(final.strip()[1:])
+                    current_price = driver.find_element_by_xpath("//*[@class='css-ovezyj']").text
+                    current_price = Decimal(current_price.strip()[1:])
+                    current_price = (round(float(current_price),2))
+                    original_price = current_price
+                    savings_price = original_price - current_price
                 except:
                     exit(0)
 
     print(name)
-    print(game_developer)
+    developer = developer.replace("Developer","")
+    developer = developer.strip()
     print(game_release)
-    print(game_platform)
-    try: 
-        print ("Before Discount: ",original)
-        print ("final: ",final)
-    except:
-        print ("final: ",final)
+    MacWin = MacWin.replace("Platform","")
+    MacWin = MacWin.replace("\n","")
+    if (MacWin == "WindowsMac"):
+        MacWin = "Windows, Macintosh"
+    else:
+        MacWin = "Windows"
+    print(MacWin)
 
+    game = (name, Seller,game_release, original_price, current_price, MacWin, launcher, savings_price, developer, publisher)
+    insert_game(conn, game)
+    print (get_game_info(conn,name))
     print('\n')
 
     driver.quit()
 
-
+google_epic('Iron Harvest')
 
