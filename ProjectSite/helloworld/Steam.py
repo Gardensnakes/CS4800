@@ -5,7 +5,6 @@ from decimal import Decimal
 from init_db import create_connection, create_table, insert_game
 from extract_db import *
 
-
 sql_path = r"C:\\Users\\TJ\\Desktop\\ProjectSite\\helloworld\\Games.db"
 conn = create_connection(sql_path)
 game_table = """ CREATE TABLE IF NOT EXISTS game_info (
@@ -68,7 +67,7 @@ def google_steam(title):
 	for a in game_details.find_all('a', href=True):
 		if count == 0:
 			game_dev = a.get_text()
-			print ("Dev: ", game_dev)
+			# print ("Dev: ", game_dev)
 		if count == 1:
 			publisher = a.get_text()
 			# print ("Pub: ", publisher)
@@ -160,5 +159,4 @@ def google_steam(title):
 			exit(0)
 	print (get_game_info(conn,game_name))
 
-google_steam('Neon_Abyss')
 

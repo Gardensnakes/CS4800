@@ -10,8 +10,8 @@ PATH = "C:\\Users\\TJ\\Desktop\\testsite\\helloworld\\geckodriver.exe"
 sql_path = r"C:\\Users\\TJ\\Desktop\\ProjectSite\\helloworld\\Games.db"
 conn = create_connection(sql_path)
 game_table = """ CREATE TABLE IF NOT EXISTS game_info (
-                                            Name TEXT PRIMARY KEY,
-                                            Seller TEXT PRIMARY KEY,
+                                            Name TEXT,
+                                            Seller TEXT,
                                             game_release TEXT,
                                             original_price REAL,
                                             current_price REAL,
@@ -19,8 +19,12 @@ game_table = """ CREATE TABLE IF NOT EXISTS game_info (
                                             launcher TEXT,
                                             savings_price REAL,
                                             developer TEXT,
-                                            publisher TEXT             
+                                            publisher TEXT,
+                                            PRIMARY KEY(Name,Seller)            
                                         ); """
+
+if conn is not None:
+        create_table(conn, game_table)
 
 def google_origin(title):
     try: 
@@ -37,10 +41,11 @@ def google_origin(title):
     MacWin = "Windows"
 
     driver.get(first_link)
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(8)
     name = driver.title.split("for PC", 1)[0]
     name = name.replace("™","")
     name = name.replace("®","")
+    print(first_link)
     onwindow = "Windows"
     onmac = "Not on Mac"
     developer = driver.find_element_by_xpath("//*[@ng-bind-html='::developerLink.label']").text
@@ -96,5 +101,6 @@ def google_origin(title):
 
     driver.quit()
     print (get_game_info(conn,name))
+
 
 

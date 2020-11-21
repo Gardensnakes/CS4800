@@ -39,7 +39,7 @@ def google_epic(title):
 
     driver = webdriver.Firefox(executable_path=PATH)
     driver.get(first_link)
-    time.sleep(2)
+    driver.implicitly_wait(10)
     name = driver.title.split(" - ", 1)[0]
     descr = driver.find_elements_by_xpath("//*[@data-component='MetaList']")
     count = 0
@@ -115,5 +115,7 @@ def google_epic(title):
 
     driver.quit()
 
-google_epic('Iron Harvest')
+#google_epic('World of Warcraft')
+
+
 
