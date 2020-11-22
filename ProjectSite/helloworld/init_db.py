@@ -22,8 +22,8 @@ def create_table(conn, create_table_sql):
 
 def insert_game(conn, project):
     sql = '''INSERT INTO game_info(name,seller,game_release, original_price, current_price, MacWin, launcher, 
-    savings_price, developer, publisher) 
-    VALUES(?,?,?,?,?,?,?,?,?,?) '''
+    savings_price, developer, publisher, date_scraped) 
+    VALUES(?,?,?,?,?,?,?,?,?,?,?) '''
     cur = conn.cursor()
     cur.execute(sql, project)
     conn.commit()

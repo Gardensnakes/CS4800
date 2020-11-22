@@ -12,7 +12,7 @@ conn = create_connection(sql_path)
 game_table = """ CREATE TABLE IF NOT EXISTS game_info (
                                             Name TEXT,
                                             Seller TEXT,
-                                            game_release TEXT,
+                                            game_release DATETIME,
                                             original_price REAL,
                                             current_price REAL,
                                             MacWin TEXT,
@@ -20,7 +20,8 @@ game_table = """ CREATE TABLE IF NOT EXISTS game_info (
                                             savings_price REAL,
                                             developer TEXT,
                                             publisher TEXT,
-                                            PRIMARY KEY(Name,Seller)            
+                                            Date_scraped DATETIME,
+                                            PRIMARY KEY(Name,Seller,Date_scraped)            
                                         ); """
 
 if conn is not None:
@@ -38,8 +39,9 @@ def google_epic(title):
         first_link = j
 
     driver = webdriver.Firefox(executable_path=PATH)
-    driver.get(first_link)
-    driver.implicitly_wait(10)
+    if (first_link.find("epicgames.com") != -1):
+        driver.get(first_link)
+        driver.implicitly_wait(10)
     name = driver.title.split(" - ", 1)[0]
     descr = driver.find_elements_by_xpath("//*[@data-component='MetaList']")
     count = 0
@@ -49,6 +51,7 @@ def google_epic(title):
         if (count == 3):
             publisher = i.text
         count = count + 1
+
 
     launcher = "Epic Games"
     game_release = driver.find_element_by_xpath("//*[@data-component='Time']").text
@@ -114,8 +117,6 @@ def google_epic(title):
     print('\n')
 
     driver.quit()
-
-#google_epic('World of Warcraft')
 
 
 

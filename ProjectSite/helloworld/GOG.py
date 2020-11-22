@@ -12,7 +12,7 @@ conn = create_connection(sql_path)
 game_table = """ CREATE TABLE IF NOT EXISTS game_info (
                                             Name TEXT,
                                             Seller TEXT,
-                                            game_release TEXT,
+                                            game_release DATETIME,
                                             original_price REAL,
                                             current_price REAL,
                                             MacWin TEXT,
@@ -20,7 +20,8 @@ game_table = """ CREATE TABLE IF NOT EXISTS game_info (
                                             savings_price REAL,
                                             developer TEXT,
                                             publisher TEXT,
-                                            PRIMARY KEY(Name,Seller)            
+                                            Date_scraped DATETIME,
+                                            PRIMARY KEY(Name,Seller,Date_scraped)            
                                         ); """
 if conn is not None:
         create_table(conn, game_table) 
@@ -38,8 +39,9 @@ def google_gog(title):
         first_link = j   
 
     driver = webdriver.Firefox(executable_path=PATH)
-    driver.get(first_link)
-    driver.implicitly_wait(10)
+    if (first_link.find("gog.com") != -1):
+        driver.get(first_link)
+        driver.implicitly_wait(5)
 
     seller = 'GOG.com'
     name = driver.title.split(" on GOG.com", 1)[0]

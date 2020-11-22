@@ -10,6 +10,7 @@ from Humble import *
 from extract_db import *
 import contextlib
 import sys, os
+from log import *
 
 def end():
     os.system("taskkill /f /im  Firefox.exe")
@@ -36,19 +37,19 @@ for line in myfile:
     # except:
     #     print("No game found\n")
     #     end()
-    try:
-        print("Gathering Origin Information on "+line)
-        google_origin(line)
-        print("\n")
-    except:
-        end()
-        print("No game found\n")
+    # try:
+    #     print("Gathering Origin Information on "+line)
+    #     google_origin(line)
+    #     print("\n")
+    # except:
+    #     end()
+    #     print("No game found\n")
     # try:
     #     print("Gathering Humble Bundle Information on "+line)
     #     google_humble(line)
     #     print("\n")
     # except:
-    #     prinend()("No game found\n")
+    #     print("No game found\n")
     #     end()
     # try:
     #     print("Gathering GOG Information on "+line)
@@ -57,6 +58,12 @@ for line in myfile:
     # except:
     #     print("No game found\n")
     #     end()
+    try:
+        print("Gathering Historical Log Information on "+line)
+        google_log(line)
+        print("\n")
+    except:
+        print("No game found\n")
     # try:
     #     print(line,": Downloading Picture...")
     #     img_search(line)

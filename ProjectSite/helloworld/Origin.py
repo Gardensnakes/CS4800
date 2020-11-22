@@ -4,6 +4,7 @@ import datetime
 from decimal import Decimal
 from init_db import create_connection, create_table, insert_game
 from extract_db import *
+from selenium.webdriver.firefox.options import Options
 
 PATH = "C:\\Users\\TJ\\Desktop\\testsite\\helloworld\\geckodriver.exe"
 
@@ -12,7 +13,7 @@ conn = create_connection(sql_path)
 game_table = """ CREATE TABLE IF NOT EXISTS game_info (
                                             Name TEXT,
                                             Seller TEXT,
-                                            game_release TEXT,
+                                            game_release DATETIME,
                                             original_price REAL,
                                             current_price REAL,
                                             MacWin TEXT,
@@ -20,7 +21,8 @@ game_table = """ CREATE TABLE IF NOT EXISTS game_info (
                                             savings_price REAL,
                                             developer TEXT,
                                             publisher TEXT,
-                                            PRIMARY KEY(Name,Seller)            
+                                            Date_scraped DATETIME,
+                                            PRIMARY KEY(Name,Seller,Date_scraped)            
                                         ); """
 
 if conn is not None:
@@ -37,15 +39,18 @@ def google_origin(title):
     for j in search(query, tld="co.in", num=1, stop=1, pause=2): 
         first_link = j
 
+    options = Options()
+    # options.headless = True
+    # driver = webdriver.Firefox(options=options, executable_path=PATH)
     driver = webdriver.Firefox(executable_path=PATH)
     MacWin = "Windows"
 
-    driver.get(first_link)
-    driver.implicitly_wait(8)
+    if (first_link.find("origin.com") != -1):
+        driver.get(first_link)
+        time.sleep(10)
     name = driver.title.split("for PC", 1)[0]
     name = name.replace("™","")
     name = name.replace("®","")
-    print(first_link)
     onwindow = "Windows"
     onmac = "Not on Mac"
     developer = driver.find_element_by_xpath("//*[@ng-bind-html='::developerLink.label']").text
@@ -70,6 +75,7 @@ def google_origin(title):
     except:
         try:
             driver.find_element_by_xpath("//*[@class='otkbtn otkbtn-primary otkbtn-primary-btn']").click()
+            driver.implicitly_wait(5)
             time.sleep(2)
             current_price = driver.find_element_by_xpath("//*[@class='origin-white-space-nowrap']").text
         except:
@@ -101,6 +107,3 @@ def google_origin(title):
 
     driver.quit()
     print (get_game_info(conn,name))
-
-
-
