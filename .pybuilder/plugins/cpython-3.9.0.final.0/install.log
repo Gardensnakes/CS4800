@@ -1,0 +1,67 @@
+Collecting coverage~=5.2
+  Downloading coverage-5.3-cp39-cp39-win_amd64.whl (208 kB)
+Collecting flake8~=3.7
+  Downloading flake8-3.8.4-py2.py3-none-any.whl (72 kB)
+Collecting pypandoc~=1.4
+  Downloading pypandoc-1.5.tar.gz (26 kB)
+Requirement already up-to-date: setuptools>=38.6.0 in c:\users\administrator\desktop\testsite\.pybuilder\plugins\cpython-3.9.0.final.0\lib\site-packages (50.3.2)
+Collecting twine>=1.15.0
+  Downloading twine-3.2.0-py3-none-any.whl (34 kB)
+Collecting unittest-xml-reporting~=3.0.2
+  Downloading unittest_xml_reporting-3.0.4-py2.py3-none-any.whl (19 kB)
+Requirement already up-to-date: wheel>=0.34.0 in c:\users\administrator\desktop\testsite\.pybuilder\plugins\cpython-3.9.0.final.0\lib\site-packages (0.35.1)
+Collecting mccabe<0.7.0,>=0.6.0
+  Downloading mccabe-0.6.1-py2.py3-none-any.whl (8.6 kB)
+Collecting pyflakes<2.3.0,>=2.2.0
+  Downloading pyflakes-2.2.0-py2.py3-none-any.whl (66 kB)
+Collecting pycodestyle<2.7.0,>=2.6.0a1
+  Downloading pycodestyle-2.6.0-py2.py3-none-any.whl (41 kB)
+Requirement already satisfied, skipping upgrade: pip>=8.1.0 in c:\users\administrator\desktop\testsite\.pybuilder\plugins\cpython-3.9.0.final.0\lib\site-packages (from pypandoc~=1.4) (20.2.4)
+Collecting rfc3986>=1.4.0
+  Downloading rfc3986-1.4.0-py2.py3-none-any.whl (31 kB)
+Collecting readme-renderer>=21.0
+  Downloading readme_renderer-27.0-py2.py3-none-any.whl (15 kB)
+Collecting tqdm>=4.14
+  Downloading tqdm-4.50.2-py2.py3-none-any.whl (70 kB)
+Collecting requests-toolbelt!=0.9.0,>=0.8.0
+  Downloading requests_toolbelt-0.9.1-py2.py3-none-any.whl (54 kB)
+Collecting requests>=2.20
+  Downloading requests-2.24.0-py2.py3-none-any.whl (61 kB)
+Collecting keyring>=15.1
+  Downloading keyring-21.4.0-py3-none-any.whl (31 kB)
+Collecting colorama>=0.4.3
+  Downloading colorama-0.4.4-py2.py3-none-any.whl (16 kB)
+Collecting pkginfo>=1.4.2
+  Downloading pkginfo-1.5.0.1-py2.py3-none-any.whl (25 kB)
+Collecting Pygments>=2.5.1
+  Downloading Pygments-2.7.1-py3-none-any.whl (944 kB)
+Collecting bleach>=2.1.0
+  Downloading bleach-3.2.1-py2.py3-none-any.whl (145 kB)
+Collecting docutils>=0.13.1
+  Downloading docutils-0.16-py2.py3-none-any.whl (548 kB)
+Collecting six
+  Downloading six-1.15.0-py2.py3-none-any.whl (10 kB)
+Collecting urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1
+  Downloading urllib3-1.25.11-py2.py3-none-any.whl (127 kB)
+Collecting idna<3,>=2.5
+  Downloading idna-2.10-py2.py3-none-any.whl (58 kB)
+Collecting certifi>=2017.4.17
+  Downloading certifi-2020.6.20-py2.py3-none-any.whl (156 kB)
+Collecting chardet<4,>=3.0.2
+  Downloading chardet-3.0.4-py2.py3-none-any.whl (133 kB)
+Collecting pywin32-ctypes!=0.1.0,!=0.1.1; sys_platform == "win32"
+  Downloading pywin32_ctypes-0.2.0-py2.py3-none-any.whl (28 kB)
+Collecting webencodings
+  Downloading webencodings-0.5.1-py2.py3-none-any.whl (11 kB)
+Collecting packaging
+  Downloading packaging-20.4-py2.py3-none-any.whl (37 kB)
+Collecting pyparsing>=2.0.2
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Building wheels for collected packages: pypandoc
+  Building wheel for pypandoc (setup.py): started
+  Building wheel for pypandoc (setup.py): finished with status 'done'
+  Created wheel for pypandoc: filename=pypandoc-1.5-py3-none-any.whl size=17041 sha256=b7b9b5d7b57e8a686e47e6c4fc17d77ba626704ea656a0321049198651d33e4e
+  Stored in directory: c:\users\administrator\appdata\local\pip\cache\wheels\52\a9\e8\0ebd903fe24026ccc8d965fb199c5dedd9032b5d3c0ffb3f07
+Successfully built pypandoc
+Installing collected packages: coverage, mccabe, pyflakes, pycodestyle, flake8, pypandoc, rfc3986, Pygments, webencodings, pyparsing, six, packaging, bleach, docutils, readme-renderer, tqdm, urllib3, idna, certifi, chardet, requests, requests-toolbelt, pywin32-ctypes, keyring, colorama, pkginfo, twine, unittest-xml-reporting
+Successfully installed Pygments-2.7.1 bleach-3.2.1 certifi-2020.6.20 chardet-3.0.4 colorama-0.4.4 coverage-5.3 docutils-0.16 flake8-3.8.4 idna-2.10 keyring-21.4.0 mccabe-0.6.1 packaging-20.4 pkginfo-1.5.0.1 pycodestyle-2.6.0 pyflakes-2.2.0 pypandoc-1.5 pyparsing-2.4.7 pywin32-ctypes-0.2.0 readme-renderer-27.0 requests-2.24.0 requests-toolbelt-0.9.1 rfc3986-1.4.0 six-1.15.0 tqdm-4.50.2 twine-3.2.0 unittest-xml-reporting-3.0.4 urllib3-1.25.11 webencodings-0.5.1

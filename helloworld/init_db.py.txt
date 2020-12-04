@@ -1,0 +1,65 @@
+import sqlite3
+from sqlite3 import Error
+
+
+def create_connection(db_file):
+    conn = None
+    try:
+        conn = sqlite3.connect(db_file)
+        return conn
+    except Error as e:
+        print(e)
+    return conn
+
+
+def create_table(conn, create_table_sql):
+    try:
+        c = conn.cursor()
+        c.execute(create_table_sql)
+    except Error as e:
+        print(e)
+
+
+def insert_game(conn, project):
+    sql = '''INSERT INTO game_info(name, release_date, discount_price, current_price, platform, launcher, 
+    savings_price, developer, publisher) 
+    VALUES(?,?,?,?,?,?,?,?,?) '''
+    cur = conn.cursor()
+    cur.execute(sql, project)
+    conn.commit()
+    return cur.lastrowid
+
+
+def main():
+    name = 'Call of Duty'
+    release_date = '2020-11-17'
+    discount_price = 65.99
+    current_price = 69.99
+    platform = 'PS 5'
+    launcher = 'Steam'
+    savings_price = 10.99
+    developer = 'Treyarch'
+    publisher = 'Activision'
+    sql_path = r"/home/kali/CS4800/testsite/helloworld/games.db"
+    conn = create_connection(sql_path)
+    game_table = """ CREATE TABLE IF NOT EXISTS game_info (
+                                            Name TEXT PRIMARY KEY,
+                                            release_date TEXT,
+                                            discount_price REAL,
+                                            current_price REAL,
+                                            platform TEXT,
+                                            launcher TEXT,
+                                            savings_price REAL,
+                                            developer TEXT,
+                                            publisher TEXT             
+                                        ); """
+    if conn is not None:
+        create_table(conn, game_table)
+    else:
+        print("Error! cannot create the database connection.")
+    with conn:
+        game = (name, release_date, discount_price, current_price, platform, launcher, savings_price, developer, publisher)
+        insert_game(conn, game)
+
+
+main()
