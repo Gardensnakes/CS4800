@@ -8,3 +8,5 @@ Included are the following features:
 * Displays commission cost of developer
 
 [Visit the Website Here!](http://teamgardensnakes.com/)
+
+![alt text](https://github.com/Gardensnakes/CS4800/tree/master/static/img/GAMESEARCH.png?raw=true)
