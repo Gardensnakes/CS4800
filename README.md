@@ -9,4 +9,4 @@ Included are the following features:
 
 [Visit the Website Here!](http://teamgardensnakes.com/)
 
-![alt text](/tree/master/static/img/GAMESEARCH.png?raw=true)
+![alt text](/static/img/GAMESEARCH.png?raw=true)
