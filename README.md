@@ -10,3 +10,9 @@ Included are the following features:
 [Visit the Website Here!](http://teamgardensnakes.com/)
 
 ![alt text](https://github.com/Gardensnakes/CS4800/tree/master/static/img/GAMESEARCH.png?raw=true)
+<img
+src=“tree/master/static/img/GAMESEARCH.png”
+raw=true
+alt=“Subject Pronouns”
+style=“margin-right: 10px;”
+/>
