@@ -1,6 +1,7 @@
 # GAMESEARCH
-GAMEARCH is a Simplified web service that provides information and low prices of games from legitimate sources in an easy to read format.
 ![alt text](/static/img/GAMESEARCH.png?raw=true)
+
+GAMEARCH is a Simplified web service that provides information and low prices of games from legitimate sources in an easy to read format.
 
 Included are the following features:
 * Web scrapes common gaming sites for information
