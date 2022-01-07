@@ -13,7 +13,7 @@ import os
 import sqlite3
 from .extract_db import return_prediction
 
-sql_path = r"C:\\Users\\Administrator\\Desktop\\testsite\\helloworld\\Games.db"
+sql_path = r"C:\\Users\\TJ\\OneDrive\\Documents\\GitHub\\CS4800\\helloworld\\Games.db"
 conn = sqlite3.connect(sql_path, check_same_thread=False)
 
 class MCLine(Flowable):
@@ -97,7 +97,7 @@ def create_report(the_game, game_img, pub, release, platform, lowest_seller,lowe
     styles.add(ParagraphStyle(name='Justify', alignment=TA_JUSTIFY))
     headline_style = styles["Heading1"]
     headline_style.alignment = TA_JUSTIFY
-    logo = r"C:\Users\Administrator\Desktop\testsite\static\img\GAMESEARCH.png"
+    logo = r"C:\Users\TJ\OneDrive\Documents\GitHub\CS4800\static\img\GAMESEARCH.png"
     im = Image(logo, 2.5 * inch, 1.25 * inch)
     im.hAlign = 'RIGHT'
     Story.append(im)
@@ -109,7 +109,7 @@ def create_report(the_game, game_img, pub, release, platform, lowest_seller,lowe
     Story.append(Paragraph(launcher_title, headline_style))
     Story.append(Spacer(1, 12))
     Story.append(Spacer(1, 12))
-    game_path = "C:\\Users\\Administrator\\Desktop\\testsite\\static\\img\\" + img
+    game_path = "C:\\Users\\TJ\\OneDrive\\Documents\\GitHub\\CS4800\\static\\img\\" + img
     gm = Image(game_path, 2.5 * inch, 3.5 * inch)
     Story.append(gm)
     Story.append(Spacer(1, 12))

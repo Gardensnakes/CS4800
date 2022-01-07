@@ -12,7 +12,7 @@ def create_connection(db_file):
         print(e)
     return conn
 
-sql_path = r"C:\\Users\\Administrator\\Desktop\\testsite\\helloworld\\Games.db"
+sql_path = r"C:\\Users\\TJ\\OneDrive\\Documents\\GitHub\\CS4800\\helloworld\\Games.db"
 conn = sqlite3.connect(sql_path, check_same_thread=False)
 def get_game_info(conn, game_name):
     cur = conn.cursor()

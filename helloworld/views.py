@@ -8,7 +8,7 @@ from  .descriptions import *
 import os
 
 
-sql_path = r"C:\\Users\\Administrator\\Desktop\\testsite\\helloworld\\Games.db"
+sql_path = r"C:\\Users\\TJ\\OneDrive\\Documents\\GitHub\\CS4800\\helloworld\\Games.db"
 conn = sqlite3.connect(sql_path, check_same_thread=False)
 
 pic_name = ""

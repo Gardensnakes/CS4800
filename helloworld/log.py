@@ -5,7 +5,7 @@ from decimal import Decimal
 from init_db import create_connection, create_table, insert_game
 from extract_db import *
 
-sql_path = r"C:\\Users\\TJ\\Desktop\\ProjectSite\\helloworld\\Games.db"
+sql_path = r"C:\\Users\\TJ\\OneDrive\\Documents\\GitHub\\CS4800\\helloworld\\Games.db"
 conn = create_connection(sql_path)
 game_table = """ CREATE TABLE IF NOT EXISTS game_info (
                                             Name TEXT,
