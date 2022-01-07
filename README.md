@@ -11,3 +11,6 @@ Included are the following features:
 
 [Visit the Website Here!](http://teamgardensnakes.com/)
 
+⚠️ Not Currently Hosted Online⚠️
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/1808143/148558580-f40a1e87-537d-435a-8c73-829b3da7e03a.gif)
